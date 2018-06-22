@@ -29,6 +29,7 @@ class App extends Component {
             <h1 className="App-title">Welcome to React</h1>
           </header>
           <NavBar />
+          
           <ReactLoading id='loading' type='spin' color='#fffff' />
         </div>
       </ Router>
@@ -37,7 +38,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return {githubList: state.githubList}
+  return {redditList: state.redditList}
 }
 
 const connector = connect(mapStateToProps)

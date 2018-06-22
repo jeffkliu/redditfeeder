@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Home from '../components/Home'
 import LoadData from '../components/LoadData'
+import { getRedditPage } from '../actions/gitHubActions'
+import { BoxedContent, filler, DisplayContent } from '../components/BoxedContent'
+
 
 class FeedData extends Component{
 	constructor(props){
@@ -19,20 +22,19 @@ class FeedData extends Component{
 	}
 
   onClick(ev){
-    this.setState({searched: true})
+    ev.preventDefault()
     fetch(`https://www.reddit.com/r/${this.state.search}/hot.json`)
         .then(response => response.json())
-        .then(data => this.setState({storeFetched: data.data.children}))
-        .catch(error=>console.log(error))
+        .then(data => this.setState({searched: true , storeFetched: data.data.children}))
+        .catch(error => console.log('error'))
+    const { getRedditPage } = this.props
+    getRedditPage(this.state)
   }
 
   onChange(ev){
     this.setState({search: ev.target.value})
   }
 
-  getState(){
-    return this.state
-  }
 
 
   	render(){
@@ -45,5 +47,4 @@ class FeedData extends Component{
   	}
 }
 
-
-export default FeedData
+export default connect(null, { getRedditPage })(FeedData)

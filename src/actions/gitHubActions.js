@@ -8,12 +8,9 @@ export function getGitHubList(){
 }
 
 
-export function getRedditPage(){
+export function getRedditPage(list){
 
 	let hold=[{commit:{message:'hi'}},{commit:{message:'hi1'}},{commit:{message:'hi2'}},{commit:{message:'hi3'}}];
 
-	const testFeed = new FeedData()
-	console.log(testFeed)
-
-	return{type: 'GET_REDDIT_PAGE', payload: hold}
+	return{type: 'GET_REDDIT_PAGE', payload: list}
 }

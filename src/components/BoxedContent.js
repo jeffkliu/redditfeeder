@@ -1,7 +1,8 @@
 import React from 'react'
 import '../App.css'
+import { connect } from 'react-redux'
 
-const BoxedContent = ({card}) => {
+export const BoxedContent = ({card}) => {
 	return(
 		<div className = 'boxed-content'>
 			{card.data.url}
@@ -9,11 +10,11 @@ const BoxedContent = ({card}) => {
 	)
 }
 
-const DisplayContent = ({dict}) => {
+export const DisplayContent = ({redditList}) => {
 	return(
 		<div className = 'display-count'>
 			{
-				dict.map((each,i) => <BoxedContent key={i} card={each} />)
+				redditList.searched ? redditList.storeFetched.map((r,i)=> <BoxedContent key={i} card={r} /> ) : null 
 			}
 		</div>
 	)
@@ -26,3 +27,11 @@ export const filler = () => {
 		</div>
 	)
 }
+
+const mapStateToProps = (state,myOwnProps) => {
+	return { redditList: state.redditList }
+}
+
+ 
+export default connect(mapStateToProps)(DisplayContent);
+

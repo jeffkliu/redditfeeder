@@ -8,11 +8,12 @@ import registerServiceWorker from './registerServiceWorker';
 import {getGitHubList, getRedditPage} from './actions/gitHubActions'
 
 const store= configureStore()
-store.dispatch(getRedditPage())
 
 ReactDOM.render(
 	<Provider store={store}>
+	<div>
 		<App />
+	</div>
 	</Provider>,
 	document.getElementById('root'));
 registerServiceWorker();
